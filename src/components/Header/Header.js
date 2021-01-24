@@ -1,5 +1,5 @@
 import React from 'react';
-import {fade, makeStyles} from '@material-ui/core/styles';
+import {makeStyles} from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
@@ -124,7 +124,7 @@ export default function Header() {
             <AppBar position="static">
                 <Toolbar>
                     <IconButton>
-                        <img src={'./logo50h.png'} alt="Logo"/>
+                        <img src={'./logo40h.png'} alt="Logo"/>
                     </IconButton>
                     <Typography className={classes.title} variant="h6" noWrap>
                         YOUDSY
