@@ -1,0 +1,31 @@
+{
+  "coin": {
+    "obverse": "Coin obverse",
+    "reverse": "Coin reverse",
+    "title": "Title",
+    "condition": "Condition",
+    "mintage": "Mintage",
+    "metal": "Metal",
+    "hallmark": "Hallmark",
+    "weight": "Weight",
+    "diameter": "Diameter",
+    "year": "Year",
+    "description": "Description",
+    "price": "Price",
+    "telephone": "Telephone number"
+  },
+  "formError": {
+    "NaN": "Not a Number",
+    "maxLength": "Max length",
+    "required": "Required field",
+    "positiveNumber": "Only positive numbers",
+    "maxNumber": "Maximum value",
+    "integer": "Only integer numbers",
+    "futureDate": "Future date is not valid",
+    "phoneNumber": "Phone number is invalid"
+  },
+  "button": {
+    "addCoin": "Add Coin",
+    "favorite": "Favorite"
+  }
+}

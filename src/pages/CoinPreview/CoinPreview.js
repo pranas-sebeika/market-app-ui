@@ -1,6 +1,7 @@
 import React from 'react';
 import {useParams} from "react-router-dom";
 import {Image, Row, Col, Container} from "react-bootstrap";
+import { useTranslation } from 'react-i18next';
 
 const coinDetails =
     {
@@ -25,7 +26,8 @@ const coinDetails =
 
 
 export default () => {
-    const {id} = useParams()
+    const {id} = useParams();
+    const { t } = useTranslation();
 
     return (
 
@@ -39,16 +41,16 @@ export default () => {
             <Row className="justify-content-md-center">
                 <Col md="auto">
                     <ul>
-                        <li>Year: {coinDetails.year}</li>
-                        <li>Mintage: {coinDetails.mintage}</li>
-                        <li>Metal: {coinDetails.metal}</li>
-                        <li>Condition: {coinDetails.condition}</li>
-                        <li>Hallmark: {coinDetails.hallmark}</li>
-                        <li>Weight: {coinDetails.weight} g.</li>
-                        <li>Diameter: {coinDetails.diameter} mm.</li>
-                        <li><p>Description: {coinDetails.description}</p></li>
-                        <h4>Telephone: {coinDetails.telephone}</h4>
-                        <h3><strong>Price: {coinDetails.price} €</strong></h3>
+                        <li>{t("coin.year")}: {coinDetails.year}</li>
+                        <li>{t("coin.mintage")}: {coinDetails.mintage}</li>
+                        <li>{t("coin.metal")}: {coinDetails.metal}</li>
+                        <li>{t("coin.condition")}: {coinDetails.condition}</li>
+                        <li>{t("coin.hallmark")}: {coinDetails.hallmark}</li>
+                        <li>{t("coin.weight")}: {coinDetails.weight} g.</li>
+                        <li>{t("coin.diameter")}: {coinDetails.diameter} mm.</li>
+                        <li><p>{t("coin.description")}: {coinDetails.description}</p></li>
+                        <h4>{t("coin.telephone")}: {coinDetails.telephone}</h4>
+                        <h3><strong>{t("coin.price")}: {coinDetails.price} €</strong></h3>
                     </ul>
                 </Col>
             </Row>

@@ -8,12 +8,12 @@ import Badge from '@material-ui/core/Badge';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import AccountCircle from '@material-ui/icons/AccountCircle';
-import MailIcon from '@material-ui/icons/Mail';
-import NotificationsIcon from '@material-ui/icons/Notifications';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import MoreIcon from '@material-ui/icons/MoreVert';
 import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 import {useHistory} from "react-router-dom";
+import {useTranslation} from "react-i18next";
+
 
 const useStyles = makeStyles((theme) => ({
 
@@ -45,6 +45,19 @@ export default function Header() {
     const [anchorEl, setAnchorEl] = React.useState(null);
     const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
     const history = useHistory()
+    const { t } = useTranslation()
+
+    const newCoin = () => history.push("/coin/new")
+    const {i18n} = useTranslation()
+    const home = () => history.push("/coins")
+
+    const changeLang = () => {
+        if(i18n.language === "en-US") {
+            i18n.changeLanguage("lt");
+        } else {
+            i18n.changeLanguage("en-US");
+        }
+    }
 
     const isMenuOpen = Boolean(anchorEl);
     const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
@@ -64,10 +77,6 @@ export default function Header() {
 
     const handleMobileMenuOpen = (event) => {
         setMobileMoreAnchorEl(event.currentTarget);
-    };
-
-    const home = () => {
-      history.push("/coins")
     };
 
     const menuId = 'primary-search-account-menu';
@@ -98,21 +107,26 @@ export default function Header() {
             onClose={handleMobileMenuClose}
             className="menu"
         >
-            <MenuItem>
-                <IconButton aria-label="show 4 new mails" color="inherit">
-                    <Badge badgeContent={4} color="secondary">
-                        <MailIcon/>
-                    </Badge>
+            <MenuItem onClick={newCoin}>
+                <IconButton aria-label="add new coin" color="inherit">
+                        <AddCircleOutlineIcon/>
                 </IconButton>
-                <p>Messages</p>
+                <p>{t("button.addCoin")}</p>
             </MenuItem>
             <MenuItem>
-                <IconButton aria-label="show 11 new notifications" color="inherit">
+                <IconButton aria-label="show favorites" color="inherit">
                     <Badge badgeContent={11} color="secondary">
-                        <NotificationsIcon/>
+                        <FavoriteIcon/>
                     </Badge>
                 </IconButton>
-                <p>Notifications</p>
+                <p>{t("button.favorite")}</p>
+            </MenuItem>
+            <MenuItem onClick={changeLang}>
+                <IconButton aria-label="show favorites" color="inherit">
+                    {
+                        i18n.language === "en-US" ? <span>🇱🇹</span> : <span>🇬🇧</span>
+                    }
+                </IconButton>
             </MenuItem>
             <MenuItem onClick={handleProfileMenuOpen}>
                 <IconButton
@@ -127,10 +141,6 @@ export default function Header() {
             </MenuItem>
         </Menu>
     );
-
-    const newCoin = () => {
-        history.push("/coin/new")
-    }
 
     return (
         <div className={classes.grow}>
@@ -154,10 +164,10 @@ export default function Header() {
                                 <FavoriteIcon/>
                             </Badge>
                         </IconButton>
-                        <IconButton aria-label="show 17 new notifications" color="inherit">
-                            <Badge badgeContent={17} color="secondary">
-                                <NotificationsIcon/>
-                            </Badge>
+                        <IconButton color="inherit" onClick={changeLang}>
+                            {
+                                i18n.language === "en-US" ? <span>🇱🇹</span> : <span>🇬🇧</span>
+                            }
                         </IconButton>
                         <IconButton
                             edge="end"

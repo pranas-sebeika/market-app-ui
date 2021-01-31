@@ -1,5 +1,5 @@
 import React from "react";
-import {Switch, Route} from "react-router-dom";
+import {Switch, Route, Redirect} from "react-router-dom";
 import Items from "../../pages/AllCoins/Coins";
 import Item from "../../pages/CoinPreview/CoinPreview";
 import CoinForm from "../../pages/CoinForm/CoinForm";
@@ -16,6 +16,9 @@ export default () => (
             </Route>
             <Route path="/coin/new">
                 <CoinForm/>
+            </Route>
+            <Route path="/">
+                <Redirect to="/coins"/>
             </Route>
             <Route path="*">
                 <NotFound/>
