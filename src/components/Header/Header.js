@@ -12,8 +12,10 @@ import MailIcon from '@material-ui/icons/Mail';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import MoreIcon from '@material-ui/icons/MoreVert';
+import {useHistory} from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
+
     grow: {
         flexGrow: 1,
     },
@@ -41,6 +43,7 @@ export default function Header() {
     const classes = useStyles();
     const [anchorEl, setAnchorEl] = React.useState(null);
     const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
+    const history = useHistory()
 
     const isMenuOpen = Boolean(anchorEl);
     const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
@@ -60,6 +63,10 @@ export default function Header() {
 
     const handleMobileMenuOpen = (event) => {
         setMobileMoreAnchorEl(event.currentTarget);
+    };
+
+    const home = () => {
+      history.push("/")
     };
 
     const menuId = 'primary-search-account-menu';
@@ -88,6 +95,7 @@ export default function Header() {
             transformOrigin={{vertical: 'top', horizontal: 'right'}}
             open={isMobileMenuOpen}
             onClose={handleMobileMenuClose}
+            className="menu"
         >
             <MenuItem>
                 <IconButton aria-label="show 4 new mails" color="inherit">
@@ -123,15 +131,17 @@ export default function Header() {
         <div className={classes.grow}>
             <AppBar position="static">
                 <Toolbar>
-                    <IconButton>
-                        <img src={'./logo40h.png'} alt="Logo"/>
-                    </IconButton>
-                    <Typography className={classes.title} variant="h6" noWrap>
-                        YOUDSY
-                    </Typography>
+                    <MenuItem onClick={home}>
+                        <IconButton>
+                            <img className="logo" src={'./logo.png'} alt="Logo"/>
+                        </IconButton>
+                        <Typography className={classes.title} variant="h6" noWrap>
+                            YOUDSY
+                        </Typography>
+                    </MenuItem>
                     <div className={classes.grow}/>
                     <div className={classes.sectionDesktop}>
-                        <IconButton aria-label="show 2 remembered items" color="inherit">
+                        <IconButton aria-label="show 2 remembered coins" color="inherit">
                             <Badge badgeContent={2} color="secondary">
                                 <FavoriteIcon/>
                             </Badge>

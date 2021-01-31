@@ -1,7 +1,8 @@
 import React from "react";
 import {Switch, Route} from "react-router-dom";
 import NotFound from "../../pages/Exception/NotFound";
-import Items from "../../pages/Items/Items";
+import Items from "../../pages/AllCoins/Coins";
+import Item from "../../pages/CoinPreview/CoinPreview";
 
 export default () => (
     <main className="container">
@@ -9,8 +10,8 @@ export default () => (
             <Route exact path="/">
                 <Items/>
             </Route>
-            <Route path="*">
-                <NotFound/>
+            <Route path="/coins/:id">
+                <Item/>
             </Route>
         </Switch>
     </main>
