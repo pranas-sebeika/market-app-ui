@@ -67,7 +67,7 @@ export default function Header() {
     };
 
     const home = () => {
-      history.push("/")
+      history.push("/coins")
     };
 
     const menuId = 'primary-search-account-menu';

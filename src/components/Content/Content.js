@@ -8,7 +8,7 @@ import NotFound from "../../pages/Exception/NotFound";
 export default () => (
     <main className="container">
         <Switch>
-            <Route exact path="/">
+            <Route exact path="/coins">
                 <Items/>
             </Route>
             <Route path="/coins/:id">
