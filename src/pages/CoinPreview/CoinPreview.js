@@ -2,7 +2,7 @@ import React from 'react';
 import {useParams} from "react-router-dom";
 import {Image, Row, Col, Container} from "react-bootstrap";
 
-const coinPreview =
+const coinDetails =
     {
         "id": 1,
         "img_reverse": "/uploads/1936-vytautas-didysis-a.jpg",
@@ -24,7 +24,7 @@ const coinPreview =
     }
 
 
-export default function Item() {
+export default () => {
     const {id} = useParams()
 
     return (
@@ -32,23 +32,23 @@ export default function Item() {
         <Container fluid>
             <Row className="justify-content-md-center">
                 <Col md="auto">
-                    <Image src={coinPreview.img_reverse} fluid style={{width: "350px"}}/>
-                    <Image src={coinPreview.img_obverse} fluid style={{width: "350px"}}/>
+                    <Image src={coinDetails.img_reverse} fluid style={{width: "350px"}}/>
+                    <Image src={coinDetails.img_obverse} fluid style={{width: "350px"}}/>
                 </Col>
             </Row>
             <Row className="justify-content-md-center">
                 <Col md="auto">
                     <ul>
-                        <li>Year: {coinPreview.year}</li>
-                        <li>Mintage: {coinPreview.mintage}</li>
-                        <li>Metal: {coinPreview.metal}</li>
-                        <li>Condition: {coinPreview.condition}</li>
-                        <li>Hallmark: {coinPreview.hallmark}</li>
-                        <li>Weight: {coinPreview.weight} g.</li>
-                        <li>Diameter: {coinPreview.diameter} mm.</li>
-                        <li><p>Description: {coinPreview.description}</p></li>
-                        <h4>Telephone: {coinPreview.telephone}</h4>
-                        <h3><strong>Price: {coinPreview.price} €</strong></h3>
+                        <li>Year: {coinDetails.year}</li>
+                        <li>Mintage: {coinDetails.mintage}</li>
+                        <li>Metal: {coinDetails.metal}</li>
+                        <li>Condition: {coinDetails.condition}</li>
+                        <li>Hallmark: {coinDetails.hallmark}</li>
+                        <li>Weight: {coinDetails.weight} g.</li>
+                        <li>Diameter: {coinDetails.diameter} mm.</li>
+                        <li><p>Description: {coinDetails.description}</p></li>
+                        <h4>Telephone: {coinDetails.telephone}</h4>
+                        <h3><strong>Price: {coinDetails.price} €</strong></h3>
                     </ul>
                 </Col>
             </Row>

@@ -12,6 +12,7 @@ import MailIcon from '@material-ui/icons/Mail';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import MoreIcon from '@material-ui/icons/MoreVert';
+import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 import {useHistory} from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
@@ -127,6 +128,10 @@ export default function Header() {
         </Menu>
     );
 
+    const newCoin = () => {
+        history.push("/coin/new")
+    }
+
     return (
         <div className={classes.grow}>
             <AppBar position="static">
@@ -136,19 +141,17 @@ export default function Header() {
                             <img className="logo" src={'./logo.png'} alt="Logo"/>
                         </IconButton>
                         <Typography className={classes.title} variant="h6" noWrap>
-                            YOUDSY
+                            <strong>YOUDSY</strong>
                         </Typography>
                     </MenuItem>
                     <div className={classes.grow}/>
                     <div className={classes.sectionDesktop}>
-                        <IconButton aria-label="show 2 remembered coins" color="inherit">
+                        <IconButton aria-label="add coin" color="inherit">
+                            <AddCircleOutlineIcon onClick={newCoin}/>
+                        </IconButton>
+                        <IconButton aria-label="remembered coins" color="inherit">
                             <Badge badgeContent={2} color="secondary">
                                 <FavoriteIcon/>
-                            </Badge>
-                        </IconButton>
-                        <IconButton aria-label="show 4 new mails" color="inherit">
-                            <Badge badgeContent={4} color="secondary">
-                                <MailIcon/>
                             </Badge>
                         </IconButton>
                         <IconButton aria-label="show 17 new notifications" color="inherit">
