@@ -7,7 +7,7 @@ export default ({coin}) => {
     return (
         <>
             <TableCell>
-                <img src={coin.img_reverse} alt="Image"/>
+                <img src={coin.obverse} alt="Image"/>
             </TableCell>
             <TableCell>{coin.title}</TableCell>
             <TableCell>

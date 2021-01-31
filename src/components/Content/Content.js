@@ -4,15 +4,17 @@ import Items from "../../pages/AllCoins/Coins";
 import Item from "../../pages/CoinPreview/CoinPreview";
 import CoinForm from "../../pages/CoinForm/CoinForm";
 import NotFound from "../../pages/Exception/NotFound";
+import CoinPreview from "../../pages/CoinPreview/CoinPreview";
+import Coins from "../../pages/AllCoins/Coins";
 
 export default () => (
     <main className="container">
         <Switch>
             <Route exact path="/coins">
-                <Items/>
+                <Coins/>
             </Route>
             <Route path="/coins/:id">
-                <Item/>
+                <CoinPreview/>
             </Route>
             <Route path="/coin/new">
                 <CoinForm/>

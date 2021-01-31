@@ -6,8 +6,8 @@ import { useTranslation } from 'react-i18next';
 const coinDetails =
     {
         "id": 1,
-        "img_reverse": "/uploads/1936-vytautas-didysis-a.jpg",
-        "img_obverse": "/uploads/1936-vytautas-didysis-b.jpg",
+        "reverse": "/uploads/1936-vytautas-didysis-a.jpg",
+        "obverse": "/uploads/1936-vytautas-didysis-b.jpg",
         "title": "Vytautas Didysis, 10 litų, 1936, Lietuva, sidabras",
         "condition": "VF/XF",
         "mintage": "720 000",
@@ -34,8 +34,8 @@ export default () => {
         <Container fluid>
             <Row className="justify-content-md-center">
                 <Col md="auto">
-                    <Image src={coinDetails.img_reverse} fluid style={{width: "350px"}}/>
-                    <Image src={coinDetails.img_obverse} fluid style={{width: "350px"}}/>
+                    <Image src={coinDetails.reverse} fluid style={{width: "350px"}}/>
+                    <Image src={coinDetails.obverse} fluid style={{width: "350px"}}/>
                 </Col>
             </Row>
             <Row className="justify-content-md-center">
