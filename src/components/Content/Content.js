@@ -1,7 +1,5 @@
 import React from "react";
 import {Switch, Route, Redirect} from "react-router-dom";
-import Items from "../../pages/AllCoins/Coins";
-import Item from "../../pages/CoinPreview/CoinPreview";
 import CoinForm from "../../pages/CoinForm/CoinForm";
 import NotFound from "../../pages/Exception/NotFound";
 import CoinPreview from "../../pages/CoinPreview/CoinPreview";

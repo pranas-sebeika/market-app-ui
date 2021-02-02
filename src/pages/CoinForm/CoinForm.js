@@ -1,13 +1,15 @@
-import React from "react";
-import { ErrorMessage, Field, Form, Formik } from "formik"
+import React, {useState} from "react";
+import {ErrorMessage, Field, Form, Formik} from "formik"
 import * as Yup from "yup";
-import { addCoin } from "../../api/coinApi";
-import { useHistory } from "react-router-dom";
-import { useTranslation } from 'react-i18next';
+import {addCoin} from "../../api/coinApi";
+import {useHistory} from "react-router-dom";
+import {useTranslation} from 'react-i18next';
 
 const CoinForm = () => {
+    const [obverse, setObverse] = useState(null)
+    const [reverse, setReverse] = useState(null)
     const currentYear = new Date().getFullYear().toString();
-    const { t } = useTranslation();
+    const {t} = useTranslation();
 
     const validationSchema = Yup.object().shape({
 
@@ -49,13 +51,28 @@ const CoinForm = () => {
     })
 
 
+    const handleObverseUpload = (event) => {
+        setObverse(event.target.files[0])
+    }
+    const handleReverseUpload = (event) => {
+        setReverse(event.target.files[0])
+    }
+
     const history = useHistory();
 
     const handleOnSubmit = (formValues, formikHelpers) => {
         formikHelpers.setSubmitting(true);
-        addCoin(formValues)
-            .then(() => {
-                history.push("/coins");
+
+        const data = new FormData()
+        data.append('obverse', obverse)
+        data.append('reverse', reverse)
+        for (const field in formValues){
+            data.append(field, formValues[field])
+        }
+
+        addCoin(data)
+            .then(({data}) => {
+                history.push(`/coins/${data}`);
             })
             .finally(() => {
                 formikHelpers.setSubmitting(false);
@@ -65,8 +82,6 @@ const CoinForm = () => {
     return (
         <Formik
             initialValues={{
-                reverse: '',
-                obverse: '',
                 title: '',
                 condition: '',
                 mintage: '',
@@ -79,9 +94,9 @@ const CoinForm = () => {
                 price: '',
                 telephone: ''
             }}
-            validationSchema={validationSchema}
+            // validationSchema={validationSchema}
             onSubmit={handleOnSubmit}
-            >
+        >
 
             {(props) => (
                 <>
@@ -90,15 +105,28 @@ const CoinForm = () => {
 
                         <div className="form-group">
                             <label htmlFor="obverse">{t("coin.obverse")}:</label>
-                            <Field name="obverse" id="img_obverse" className="form-control"
-                                   placeholder={t("formPlaceholder.obverse")} type="file" accept="image/*"/>
-                            <ErrorMessage name="obverse" component="small" className="form-text text-danger" />
+                            <Field name="obverse"
+                                   id="obverse"
+                                   className="form-control"
+                                   placeholder={t("formPlaceholder.obverse")}
+                                   type="file"
+                                   accept="image/*"
+                                   component="input"
+                                   onChange={(e) => handleObverseUpload(e)}
+                            />
+                            <ErrorMessage name="obverse" component="small" className="form-text text-danger"/>
                         </div>
 
                         <div className="form-group">
                             <label htmlFor="reverse">{t("coin.reverse")}:</label>
-                            <Field name="reverse" id="reverse" className="form-control"
-                                   placeholder={t("formPlaceholder.reverse")} type="file" accept="image/*"/>
+                            <Field name="reverse"
+                                   id="reverse"
+                                   className="form-control"
+                                   placeholder={t("formPlaceholder.reverse")}
+                                   type="file"
+                                   accept="image/*"
+                                   onChange={(e) => handleReverseUpload(e)}
+                            />
                             <ErrorMessage name="reverse" component="small" className="form-text text-danger"/>
                         </div>
 
@@ -180,7 +208,8 @@ const CoinForm = () => {
                             <ErrorMessage name="telephone" component="small" className="form-text text-danger"/>
                         </div>
 
-                        <button type="submit" className="btn btn-primary mt-2" disabled={ props.isSubmitting }>{t("button.addCoin")}</button>
+                        <button type="submit" className="btn btn-primary mt-2"
+                                disabled={props.isSubmitting}>{t("button.addCoin")}</button>
                     </Form>
                 </>
             )}

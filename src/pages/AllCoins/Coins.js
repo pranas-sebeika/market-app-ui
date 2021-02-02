@@ -1,6 +1,7 @@
 import CoinTable from "./CoinTable";
 import React, {useEffect, useState} from "react";
 import {getAllCoins} from "../../api/coinApi";
+import Spinner from "../../components/common/Spinner";
 
 const Coins = () => {
     const [coins, setCoins] = useState([])
@@ -13,8 +14,8 @@ const Coins = () => {
     const loadCoins = () => {
         setIsLoading(true);
         getAllCoins()
-            .then(response => {
-                setCoins(response.data)
+            .then(({data}) => {
+                setCoins(data)
             })
             .finally(() => {
                 setIsLoading(false);
@@ -22,14 +23,18 @@ const Coins = () => {
     }
 
     return (
-
-
-
         <>
             {
-                <CoinTable
-                    coins={coins}
-                />
+                isLoading ?
+                    (
+                        <Spinner/>
+
+                    ):
+                    (
+                        <CoinTable
+                            coins={coins}
+                        />
+                    )
             }
         </>
     )
