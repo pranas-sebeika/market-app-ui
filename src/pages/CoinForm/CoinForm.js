@@ -65,8 +65,8 @@ const CoinForm = () => {
     return (
         <Formik
             initialValues={{
-                img_reverse: '',
-                img_obverse: '',
+                reverse: '',
+                obverse: '',
                 title: '',
                 condition: '',
                 mintage: '',
@@ -89,79 +89,79 @@ const CoinForm = () => {
                     <Form className="mx-4">
 
                         <div className="form-group">
-                            <label htmlFor="img_obverse">{t("coin.obverse")}:</label>
-                            <Field name="img_obverse" id="img_obverse" className="form-control"
-                                   placeholder="Please upload coin obverse image" type="file" accept="image/*"/>
-                            <ErrorMessage name="img_obverse" component="small" className="form-text text-danger" />
+                            <label htmlFor="obverse">{t("coin.obverse")}:</label>
+                            <Field name="obverse" id="img_obverse" className="form-control"
+                                   placeholder={t("formPlaceholder.obverse")} type="file" accept="image/*"/>
+                            <ErrorMessage name="obverse" component="small" className="form-text text-danger" />
                         </div>
 
                         <div className="form-group">
-                            <label htmlFor="img_reverse">{t("coin.reverse")}:</label>
-                            <Field name="img_reverse" id="img_reverse" className="form-control"
-                                   placeholder="Please upload coin reverse image" type="file" accept="image/*"/>
-                            <ErrorMessage name="img_reverse" component="small" className="form-text text-danger"/>
+                            <label htmlFor="reverse">{t("coin.reverse")}:</label>
+                            <Field name="reverse" id="reverse" className="form-control"
+                                   placeholder={t("formPlaceholder.reverse")} type="file" accept="image/*"/>
+                            <ErrorMessage name="reverse" component="small" className="form-text text-danger"/>
                         </div>
 
                         <div className="form-group">
                             <label htmlFor="title">{t("coin.title")}:</label>
                             <Field name="title" id="title" className="form-control"
-                                   placeholder="Please enter title"/>
+                                   placeholder={t("formPlaceholder.title")}/>
                             <ErrorMessage name="title" component="small" className="form-text text-danger"/>
                         </div>
 
                         <div className="form-group">
                             <label htmlFor="condition">{t("coin.condition")}:</label>
                             <Field name="condition" id="condition" className="form-control"
-                                   placeholder="Please enter coin condition"/>
+                                   placeholder={t("formPlaceholder.condition")}/>
                             <ErrorMessage name="condition" component="small" className="form-text text-danger"/>
                         </div>
 
                         <div className="form-group">
                             <label htmlFor="mintage">{t("coin.mintage")}:</label>
                             <Field name="mintage" id="mintage" className="form-control"
-                                   placeholder="Please enter coin mintage"/>
+                                   placeholder={t("formPlaceholder.mintage")}/>
                             <ErrorMessage name="mintage" component="small" className="form-text text-danger"/>
                         </div>
 
                         <div className="form-group">
                             <label htmlFor="metal">{t("coin.metal")}:</label>
                             <Field name="metal" id="metal" className="form-control"
-                                   placeholder="Please enter coin metal"/>
+                                   placeholder={t("formPlaceholder.metal")}/>
                             <ErrorMessage name="metal" component="small" className="form-text text-danger"/>
                         </div>
 
                         <div className="form-group">
                             <label htmlFor="hallmark">{t("coin.hallmark")}:</label>
                             <Field name="hallmark" id="hallmark" className="form-control"
-                                   placeholder="Please enter coin hallmark"/>
+                                   placeholder={t("formPlaceholder.hallmark")}/>
                             <ErrorMessage name="hallmark" component="small" className="form-text text-danger"/>
                         </div>
 
                         <div className="form-group">
                             <label htmlFor="weight">{t("coin.weight")}:</label>
                             <Field name="weight" id="weight" className="form-control"
-                                   placeholder="Please enter coin weight"/>
+                                   placeholder={t("formPlaceholder.weight")}/>
                             <ErrorMessage name="weight" component="small" className="form-text text-danger"/>
                         </div>
 
                         <div className="form-group">
                             <label htmlFor="diameter">{t("coin.diameter")}:</label>
                             <Field name="diameter" id="diameter" className="form-control"
-                                   placeholder="Please enter coin diameter"/>
+                                   placeholder={t("formPlaceholder.diameter")}/>
                             <ErrorMessage name="diameter" component="small" className="form-text text-danger"/>
                         </div>
 
                         <div className="form-group">
                             <label htmlFor="year">{t("coin.year")}:</label>
                             <Field name="year" id="year" className="form-control"
-                                   placeholder="Please enter coin year"/>
+                                   placeholder={t("formPlaceholder.year")}/>
                             <ErrorMessage name="year" component="small" className="form-text text-danger"/>
                         </div>
 
                         <div className="form-group">
                             <label htmlFor="description">{t("coin.description")}:</label>
                             <Field name="description" id="description" className="form-control"
-                                   placeholder="Please enter coin description" component="textarea"
+                                   placeholder={t("formPlaceholder.description")} component="textarea"
                                    rows="10"/>
                             <ErrorMessage name="description" component="small" className="form-text text-danger"/>
                         </div>
@@ -169,14 +169,14 @@ const CoinForm = () => {
                         <div className="form-group">
                             <label htmlFor="price">{t("coin.price")}:</label>
                             <Field name="price" id="price" className="form-control"
-                                   placeholder="Please enter coin Price"/>
+                                   placeholder={t("formPlaceholder.price")}/>
                             <ErrorMessage name="price" component="small" className="form-text text-danger"/>
                         </div>
 
                         <div className="form-group">
                             <label htmlFor="telephone">{t("coin.telephone")}:</label>
                             <Field name="telephone" id="telephone" className="form-control"
-                                   placeholder="Please enter your telephone"/>
+                                   placeholder={t("formPlaceholder.telephone")}/>
                             <ErrorMessage name="telephone" component="small" className="form-text text-danger"/>
                         </div>
 

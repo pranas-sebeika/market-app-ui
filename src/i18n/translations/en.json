@@ -24,6 +24,21 @@
     "futureDate": "Future date is not valid",
     "phoneNumber": "Phone number is invalid"
   },
+  "formPlaceholder": {
+    "obverse": "Please upload coin obverse image",
+    "reverse": "Please upload coin reverse image",
+    "title": "Please enter title",
+    "condition": "Please enter coin condition",
+    "mintage": "Please enter coin mintage",
+    "metal": "Please enter coin metal",
+    "hallmark": "Please enter coin hallmark",
+    "weight": "Please enter coin weight",
+    "diameter": "Please enter coin diameter",
+    "year": "Please enter coin year",
+    "description": "Please enter coin description",
+    "price": "Please enter coin Price",
+    "telephone": "Please enter your telephone"
+  },
   "button": {
     "addCoin": "Add Coin",
     "favorite": "Favorite"

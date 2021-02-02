@@ -13,6 +13,7 @@ import MoreIcon from '@material-ui/icons/MoreVert';
 import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 import {useHistory} from "react-router-dom";
 import {useTranslation} from "react-i18next";
+import logo from '../../assets/logo.png';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -148,7 +149,7 @@ export default function Header() {
                 <Toolbar>
                     <MenuItem onClick={home}>
                         <IconButton>
-                            <img className="logo" src={'./logo.png'} alt="Logo"/>
+                            <img className="logo" src={logo} alt="Logo"/>
                         </IconButton>
                         <Typography className={classes.title} variant="h6" noWrap>
                             <strong>YOUDSY</strong>

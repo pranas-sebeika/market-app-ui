@@ -2,7 +2,7 @@
   "coin": {
     "obverse": "Monetos aversas",
     "reverse": "Monetos reversas",
-    "title": "Title",
+    "title": "Antraštė",
     "condition": "Stovis",
     "mintage": "Tiražas",
     "metal": "Metalas",
@@ -23,6 +23,21 @@
     "integer": "Tik sveiki skaičiai",
     "futureDate": "Data ateityje",
     "phoneNumber": "Telefono numerio formatas netinkamas"
+  },
+  "formPlaceholder": {
+    "obverse": "Įkelkite monetos averso nuotrauką",
+    "reverse": "Įkelkite monetos reverso nuotrauką",
+    "title": "Įveskite antraštę",
+    "condition": "Įveskite monetos būklę",
+    "mintage": "Įveskite monetos tiražą",
+    "metal": "Įveskite monetos sudėtį",
+    "hallmark": "Įveskite metalo prabą",
+    "weight": "Įveskite monetos svorį",
+    "diameter": "Įveskite monetos diametrą",
+    "year": "Įveskite monetos metus",
+    "description": "Įveskite monetos aprašymą",
+    "price": "Įveskite monetos kainą",
+    "telephone": "Įveskite kontaktinį numerį"
   },
   "button": {
     "addCoin": "Pridėti monetą",
