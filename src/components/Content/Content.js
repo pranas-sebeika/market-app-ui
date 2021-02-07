@@ -6,8 +6,9 @@ import CoinPreview from "../../pages/CoinPreview/CoinPreview";
 import Coins from "../../pages/AllCoins/Coins";
 import Login from "../../pages/Login/Login";
 import MyCoins from "../../pages/AllCoins/MyCoins";
+import ServerError from "../../pages/Exception/ServerError";
 
-export default () => (
+const Content = () => (
     <main className="container">
         <Switch>
             <Route exact path="/coins">
@@ -19,11 +20,17 @@ export default () => (
             <Route exact path="/coin/new">
                 <CoinForm/>
             </Route>
-            <Route exact path="/login">
+            <Route path="/login">
                 <Login/>
             </Route>
-            <Route exact path="/my/coins">
+            <Route path="/my/coins">
                 <MyCoins/>
+            </Route>
+            <Route path="/404">
+                <NotFound/>
+            </Route>
+            <Route path="/500">
+                <ServerError/>
             </Route>
             <Route exact expath="/">
                 <Redirect to="/coins"/>
@@ -34,3 +41,5 @@ export default () => (
         </Switch>
     </main>
 )
+
+export default Content

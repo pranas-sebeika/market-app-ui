@@ -1,7 +1,7 @@
 import CoinTable from "./CoinTable";
 import React, {useEffect, useState} from "react";
 import {deleteCoin, getAllCoins} from "../../api/coinApi";
-import Spinner from "../../components/common/Spinner";
+import SpinnerWrapper from "../../components/common/SpinnerWrapper";
 
 const Coins = () => {
     const [coins, setCoins] = useState([])
@@ -37,16 +37,8 @@ const Coins = () => {
         <>
             {
                 isLoading ?
-                    (
-                        <Spinner/>
-
-                    ):
-                    (
-                        <CoinTable
-                            coins = {coins}
-                            deleteCoinHandler = {deleteCoinHandler}
-                        />
-                    )
+                    ( <SpinnerWrapper/> ):
+                    ( <CoinTable coins = {coins} deleteCoinHandler = {deleteCoinHandler}/> )
             }
         </>
     )

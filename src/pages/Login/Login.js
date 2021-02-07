@@ -1,5 +1,4 @@
 import React, {useContext, useState} from "react";
-import {makeStyles} from "@material-ui/core/styles";
 import {Field, Form, Formik} from "formik";
 import {createUser, login} from "../../api/userApi";
 import {useLocation, useHistory} from "react-router-dom";
@@ -7,10 +6,7 @@ import {Button} from "react-bootstrap";
 import {UserContext} from "../../App";
 
 
-//TODO MAKE STYLE
-const useStyles = makeStyles((theme) => ({}));
-
-export default (props) => {
+const Login = () => {
     const [isLogin, setIsLogin] = useState(true)
     const { addUser } = useContext(UserContext)
     const location = useLocation()
@@ -33,7 +29,6 @@ export default (props) => {
         login(userCredentials)
             .then(({data, headers: { authorization }, status}) => {
                 if (status === 200) {
-                    console.log(data)
                     addUser(data)
                     localStorage.setItem('token', authorization)
                     localStorage.setItem('user', JSON.stringify(data))
@@ -46,17 +41,19 @@ export default (props) => {
                 }
 
             })
-            .finally(setSubmitting(false))
+            .catch(setSubmitting(false))
     }
 
     const handleCreateUser = (newUser, { setSubmitting }) => {
         setSubmitting(true)
 
         createUser(newUser)
-            .then(({data}) => {
-                console.log(data);
+            .then(({status}) => {
+                if (status === 201) {
+                    toggle()
+                }
             })
-            .finally(setSubmitting(false))
+            .catch(setSubmitting(false))
     };
 
     return (
@@ -155,4 +152,6 @@ export default (props) => {
         </>
     )
 }
+
+export default Login
 

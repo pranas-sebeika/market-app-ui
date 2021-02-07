@@ -110,21 +110,24 @@ export default function Header() {
             className="menu"
         >
             {
-                !!userContext.user ? (
-                    <>
+                !!userContext.user? (
                         <MenuItem onClick={newCoin}>
                             <IconButton aria-label="add new coin" color="inherit">
                                 <AddCircleOutlineIcon/>
                             </IconButton>
                             <p>{t("button.addCoin")}</p>
                         </MenuItem>
+                    ) : ("")
+            }
+            {
+                !!userContext.user? (
                         <MenuItem onClick={handleMyCoins}>
                             <IconButton aria-label="show favorites" color="inherit">
                                 <FolderSpecialIcon/>
                             </IconButton>
                             <p>{t("button.myCoins")}</p>
                         </MenuItem>
-                    </>
+
                 ) : ("")
             }
             <MenuItem onClick={changeLang}>

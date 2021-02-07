@@ -4,7 +4,7 @@ import {Link} from "react-router-dom";
 import { Container } from "react-bootstrap";
 
 
-export default ({coin}) => {
+const CoinCard = ({coin}) => {
 
     return (
         <>
@@ -12,6 +12,7 @@ export default ({coin}) => {
                 <Container>
                     <div>
                         <img
+                            alt={`Coin {coin.id}`}
                             src={coin.obverse}
                             onMouseOver={e => (e.currentTarget.src = coin.reverse)}
                             onMouseLeave={e => (e.currentTarget.src = coin.obverse)}
@@ -26,3 +27,4 @@ export default ({coin}) => {
 
     )
 }
+export default CoinCard

@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import {deleteCoin, getUserCoins} from "../../api/coinApi";
-import Spinner from "../../components/common/Spinner";
+import SpinnerWrapper from "../../components/common/SpinnerWrapper";
 import CoinTable from "./CoinTable";
 
 const MyCoins = () => {
@@ -38,7 +38,7 @@ const MyCoins = () => {
             {
                 isLoading ?
                     (
-                        <Spinner/>
+                        <SpinnerWrapper/>
 
                     ):
                     (
