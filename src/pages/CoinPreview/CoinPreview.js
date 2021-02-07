@@ -1,14 +1,18 @@
 import React, {useEffect, useState} from 'react';
-import {useParams} from "react-router-dom";
-import {Image, Row, Col, Container} from "react-bootstrap";
+import {useParams, useHistory} from "react-router-dom";
+import {Image, Row, Col, Container, Button} from "react-bootstrap";
 import {useTranslation} from 'react-i18next';
 import {getCoin} from "../../api/coinApi";
 import Spinner from "../../components/common/Spinner";
+import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
+import FavoriteBorderOutlinedIcon from '@material-ui/icons/FavoriteBorderOutlined';
+import FavoriteOutlinedIcon from '@material-ui/icons/FavoriteOutlined';
 
 
 export default () => {
     const {id} = useParams();
     const {t} = useTranslation();
+    const history = useHistory();
 
     const [coin, setCoin] = useState(null)
     const [isLoading, setIsLoading] = useState(true)
@@ -28,9 +32,15 @@ export default () => {
             })
     }
 
-
     return (
         <>
+            <Button onClick={history.goBack}>
+                <ArrowBackIosIcon/>
+            </Button>
+            <Button onClick={() => {alert("NOT DEVELOPED")}}>
+                <FavoriteBorderOutlinedIcon/>
+                <FavoriteOutlinedIcon/>
+            </Button>
             {
                 isLoading ?
                     (

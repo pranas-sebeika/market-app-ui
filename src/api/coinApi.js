@@ -7,3 +7,5 @@ export const getCoin = (id) => HTTP.get(`/coins/${id}`);
 export const addCoin = (data) => HTTP.post('/coin/new', data);
 
 export const deleteCoin = (id) => HTTP.delete(`/coins/${id}`);
+
+export const getUserCoins = () => HTTP.get('/my/coins');

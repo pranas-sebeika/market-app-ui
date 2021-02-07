@@ -41,6 +41,9 @@
   },
   "button": {
     "addCoin": "Pridėti monetą",
-    "favorite": "Įsiminti"
+    "favorite": "Įsiminti",
+    "myCoins": "Mano monetos",
+    "login": "Login",
+    "logout": "Logout"
   }
 }

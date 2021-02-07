@@ -1,19 +1,19 @@
-import CoinTable from "./CoinTable";
 import React, {useEffect, useState} from "react";
-import {deleteCoin, getAllCoins} from "../../api/coinApi";
+import {deleteCoin, getUserCoins} from "../../api/coinApi";
 import Spinner from "../../components/common/Spinner";
+import CoinTable from "./CoinTable";
 
-const Coins = () => {
+const MyCoins = () => {
     const [coins, setCoins] = useState([])
     const [isLoading, setIsLoading] = useState(true)
 
     useEffect(() => {
-        loadCoins();
+        loadMyCoins();
     }, [])
 
-    const loadCoins = () => {
+    const loadMyCoins = () => {
         setIsLoading(true);
-        getAllCoins()
+        getUserCoins()
             .then(({data}) => {
                 setCoins(data)
             })
@@ -26,7 +26,7 @@ const Coins = () => {
         setIsLoading(true);
         deleteCoin(id)
             .then(() => {
-                loadCoins();
+                loadMyCoins();
             })
             .finally(() => {
                 setIsLoading(false);
@@ -52,4 +52,4 @@ const Coins = () => {
     )
 }
 
-export default Coins
+export default MyCoins

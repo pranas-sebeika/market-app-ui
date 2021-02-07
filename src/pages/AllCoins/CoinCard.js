@@ -1,18 +1,27 @@
 import React from "react";
-import TableCell from "@material-ui/core/TableCell";
 import "./CoinCard.css"
+import {Link} from "react-router-dom";
+import { Container } from "react-bootstrap";
+
 
 export default ({coin}) => {
 
     return (
         <>
-            <TableCell>
-                <img src={coin.obverse} alt="Image"/>
-            </TableCell>
-            <TableCell>{coin.title}</TableCell>
-            <TableCell>
-                <strong>{coin.price} EUR</strong>
-            </TableCell>
+            <Link to={`/coins/${coin.id}`}>
+                <Container>
+                    <div>
+                        <img
+                            src={coin.obverse}
+                            onMouseOver={e => (e.currentTarget.src = coin.reverse)}
+                            onMouseLeave={e => (e.currentTarget.src = coin.obverse)}
+                        />
+                    </div>
+                    <span>{coin.title}</span>
+                    <strong>{coin.price} EUR</strong>
+                </Container>
+
+            </Link>
         </>
 
     )

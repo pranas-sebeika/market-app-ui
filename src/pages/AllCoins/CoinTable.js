@@ -4,10 +4,11 @@ import Table from "@material-ui/core/Table";
 import TableRow from "@material-ui/core/TableRow";
 import TableCell from "@material-ui/core/TableCell";
 import TableBody from "@material-ui/core/TableBody";
-import {Link} from "react-router-dom";
-import ItemCard from "./CoinCard";
+import CoinCard from "./CoinCard";
+import RemoveCircleIcon from "@material-ui/icons/RemoveCircle";
+import Button from "@material-ui/core/Button";
 
-function CoinTable({coins}) {
+function CoinTable({coins, deleteCoinHandler}) {
 
     return (
         <TableContainer>
@@ -15,11 +16,13 @@ function CoinTable({coins}) {
                 <TableBody>
                     {
                         coins.map(coin => (
-                            <TableRow key={coin.id}>
-                                <Link to={`/coins/${coin.id}`}>
-                                    <TableCell>{coin.id}</TableCell>
-                                    <ItemCard coin={coin}/>
-                                </Link>
+                            <TableRow>
+                                <TableCell>
+                                    <Button onClick={() => deleteCoinHandler(coin.id)}>
+                                        <RemoveCircleIcon color="secondary"/>
+                                    </Button>
+                                    <CoinCard coin={coin}/>
+                                </TableCell>
                             </TableRow>
                         ))
                     }
