@@ -7,6 +7,7 @@ import Coins from "../../pages/AllCoins/Coins";
 import Login from "../../pages/Login/Login";
 import MyCoins from "../../pages/AllCoins/MyCoins";
 import ServerError from "../../pages/Exception/ServerError";
+import PrivateRoute from "../../PrivateRoute/PrivateRoute";
 
 const Content = () => (
     <main className="container">
@@ -17,15 +18,15 @@ const Content = () => (
             <Route path="/coins/:id">
                 <CoinPreview/>
             </Route>
-            <Route exact path="/coin/new">
+            <PrivateRoute exact path="/coin/new">
                 <CoinForm/>
-            </Route>
+            </PrivateRoute>
             <Route path="/login">
                 <Login/>
             </Route>
-            <Route path="/my/coins">
+            <PrivateRoute path="/my/coins">
                 <MyCoins/>
-            </Route>
+            </PrivateRoute>
             <Route path="/404">
                 <NotFound/>
             </Route>
