@@ -1,7 +1,7 @@
-import CoinTable from "./CoinTable";
 import React, {useEffect, useState} from "react";
 import {deleteCoin, getAllCoins} from "../../api/coinApi";
 import SpinnerWrapper from "../../components/common/SpinnerWrapper";
+import CoinTable from "./CoinTable";
 
 const Coins = () => {
     const [coins, setCoins] = useState([])

@@ -44,6 +44,8 @@
     "favorite": "Favorite",
     "myCoins": "My coins",
     "login": "Login",
-    "logout": "Logout"
+    "logout": "Logout",
+    "delete": "Delete",
+    "view": "View"
   }
 }

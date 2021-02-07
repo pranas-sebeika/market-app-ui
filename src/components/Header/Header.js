@@ -11,7 +11,7 @@ import MoreIcon from '@material-ui/icons/MoreVert';
 import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 import FolderSpecialIcon from '@material-ui/icons/FolderSpecial';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
-import {Redirect, useHistory, NavLink} from "react-router-dom";
+import {useHistory, NavLink} from "react-router-dom";
 import {useTranslation} from "react-i18next";
 import logo from '../../assets/logo.png';
 import {UserContext} from "../../App";

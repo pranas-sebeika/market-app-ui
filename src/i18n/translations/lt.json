@@ -44,6 +44,8 @@
     "favorite": "Įsiminti",
     "myCoins": "Mano monetos",
     "login": "Prisijungti",
-    "logout": "Atsijungti"
+    "logout": "Atsijungti",
+    "delete": "Ištrinti",
+    "view": "Peržiūrėti"
   }
 }

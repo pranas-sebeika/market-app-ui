@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import "./CoinCard.css"
 import {Link} from "react-router-dom";
 import { Container } from "react-bootstrap";
