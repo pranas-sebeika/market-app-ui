@@ -1,0 +1,11 @@
+.form-container {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
+
+form {
+    max-width: 450px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}

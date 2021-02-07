@@ -11,7 +11,7 @@ import MoreIcon from '@material-ui/icons/MoreVert';
 import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 import FolderSpecialIcon from '@material-ui/icons/FolderSpecial';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
-import {useHistory, NavLink} from "react-router-dom";
+import {Redirect, useHistory, NavLink} from "react-router-dom";
 import {useTranslation} from "react-i18next";
 import logo from '../../assets/logo.png';
 import {UserContext} from "../../App";
@@ -52,6 +52,7 @@ export default function Header() {
     const newCoin = () => history.push("/coin/new")
     const handleMyCoins = () => history.push("/my/coins")
     const home = () => history.push("/coins")
+    const handleLogIn = () => history.push("/login")
 
     const changeLang = () => {
         if (i18n.language === "en-US") {
@@ -110,23 +111,23 @@ export default function Header() {
             className="menu"
         >
             {
-                !!userContext.user? (
-                        <MenuItem onClick={newCoin}>
-                            <IconButton aria-label="add new coin" color="inherit">
-                                <AddCircleOutlineIcon/>
-                            </IconButton>
-                            <p>{t("button.addCoin")}</p>
-                        </MenuItem>
-                    ) : ("")
+                !!userContext.user ? (
+                    <MenuItem onClick={newCoin}>
+                        <IconButton aria-label="add new coin" color="inherit">
+                            <AddCircleOutlineIcon/>
+                        </IconButton>
+                        <p>{t("button.addCoin")}</p>
+                    </MenuItem>
+                ) : ("")
             }
             {
-                !!userContext.user? (
-                        <MenuItem onClick={handleMyCoins}>
-                            <IconButton aria-label="show favorites" color="inherit">
-                                <FolderSpecialIcon/>
-                            </IconButton>
-                            <p>{t("button.myCoins")}</p>
-                        </MenuItem>
+                !!userContext.user ? (
+                    <MenuItem onClick={handleMyCoins}>
+                        <IconButton aria-label="show favorites" color="inherit">
+                            <FolderSpecialIcon/>
+                        </IconButton>
+                        <p>{t("button.myCoins")}</p>
+                    </MenuItem>
 
                 ) : ("")
             }
@@ -194,8 +195,7 @@ export default function Header() {
                                 </IconButton>
                             ) : (
 
-                                <IconButton component={NavLink} to={"/login"} edge="end" aria-label="login"
-                                            color="inherit">
+                                <IconButton onClick={handleLogIn} edge="end" aria-label="login" color="inherit">
                                     <AccountCircle/>
                                     {t("button.login")}
                                 </IconButton>

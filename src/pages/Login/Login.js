@@ -4,6 +4,7 @@ import {createUser, login} from "../../api/userApi";
 import {useLocation, useHistory} from "react-router-dom";
 import {Button} from "react-bootstrap";
 import {UserContext} from "../../App";
+import "./Login.css";
 
 
 const Login = () => {
@@ -57,7 +58,7 @@ const Login = () => {
     };
 
     return (
-        <>
+        <div className="form-container">
 
             {
                 isLogin ? (
@@ -149,7 +150,7 @@ const Login = () => {
                     )
             }
 
-        </>
+        </div>
     )
 }
 
