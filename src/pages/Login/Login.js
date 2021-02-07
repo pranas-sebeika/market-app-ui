@@ -17,7 +17,6 @@ export default (props) => {
     const history = useHistory()
 
 
-
     const toggle = () => {
         if (isLogin) {
             setIsLogin(false)
@@ -28,12 +27,16 @@ export default (props) => {
 
     const handleLogin = (userCredentials, { setSubmitting }) => {
         setSubmitting(true)
+        localStorage.removeItem('user')
+        localStorage.removeItem('token')
 
         login(userCredentials)
             .then(({data, headers: { authorization }, status}) => {
                 if (status === 200) {
+                    console.log(data)
                     addUser(data)
                     localStorage.setItem('token', authorization)
+                    localStorage.setItem('user', JSON.stringify(data))
                     const { from } = location.state || {
                         from: {
                             pathname: '/'
@@ -55,7 +58,6 @@ export default (props) => {
             })
             .finally(setSubmitting(false))
     };
-
 
     return (
         <>

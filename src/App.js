@@ -1,5 +1,5 @@
-import React, {useState} from "react";
-import { BrowserRouter } from "react-router-dom";
+import React, {useEffect, useState} from "react";
+import {BrowserRouter} from "react-router-dom";
 
 import Header from "./components/Header/Header";
 import Content from "./components/Content/Content";
@@ -15,6 +15,14 @@ function App() {
         removeUser: () => setUser(null),
     }
 
+    useEffect(() => {
+        const data = localStorage.getItem('user')
+        if (data) {
+            setUser((JSON.parse(data)))
+        }
+
+    }, [])
+
     return (
         <UserContext.Provider value={userStore}>
             <BrowserRouter>
@@ -25,5 +33,5 @@ function App() {
     );
 }
 
-export { UserContext }
+export {UserContext}
 export default App;

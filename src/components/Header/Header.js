@@ -1,14 +1,12 @@
-import React, {useContext} from 'react';
+import React, {useContext, useState} from 'react';
 import {makeStyles} from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
-import Badge from '@material-ui/core/Badge';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import AccountCircle from '@material-ui/icons/AccountCircle';
-import FavoriteIcon from '@material-ui/icons/Favorite';
 import MoreIcon from '@material-ui/icons/MoreVert';
 import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 import FolderSpecialIcon from '@material-ui/icons/FolderSpecial';
@@ -46,16 +44,13 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Header() {
     const classes = useStyles();
-    const [anchorEl, setAnchorEl] = React.useState(null);
-    const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
+    const [anchorEl, setAnchorEl] = useState(null);
+    const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState(null);
+    const {i18n, t} = useTranslation()
+    const userContext = useContext(UserContext)
     const history = useHistory()
-    const {t} = useTranslation()
-    const {user, removeUser} = useContext(UserContext)
-
-
     const newCoin = () => history.push("/coin/new")
     const handleMyCoins = () => history.push("/my/coins")
-    const {i18n} = useTranslation()
     const home = () => history.push("/coins")
 
     const changeLang = () => {
@@ -67,16 +62,13 @@ export default function Header() {
     }
 
     const handleLogout = () => {
-        console.log(">>>>>>>>USER: ", user)
-        // removeUser()
+        userContext.removeUser()
+        localStorage.removeItem("token")
+        localStorage.removeItem("user")
     }
 
     const isMenuOpen = Boolean(anchorEl);
     const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
-
-    const handleProfileMenuOpen = (event) => {
-        setAnchorEl(event.currentTarget);
-    };
 
     const handleMobileMenuClose = () => {
         setMobileMoreAnchorEl(null);
@@ -102,8 +94,6 @@ export default function Header() {
             open={isMenuOpen}
             onClose={handleMenuClose}
         >
-            <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-            <MenuItem onClick={handleMenuClose}>My account</MenuItem>
         </Menu>
     );
 
@@ -119,26 +109,24 @@ export default function Header() {
             onClose={handleMobileMenuClose}
             className="menu"
         >
-            <MenuItem onClick={newCoin}>
-                <IconButton aria-label="add new coin" color="inherit">
-                    <AddCircleOutlineIcon/>
-                </IconButton>
-                <p>{t("button.addCoin")}</p>
-            </MenuItem>
-            <MenuItem>
-                <IconButton aria-label="show favorites" color="inherit">
-                    <Badge badgeContent={11} color="secondary">
-                        <FavoriteIcon/>
-                    </Badge>
-                </IconButton>
-                <p>{t("button.favorite")}</p>
-            </MenuItem>
-            <MenuItem onClick={handleMyCoins}>
-                <IconButton aria-label="show favorites" color="inherit">
-                    <FolderSpecialIcon/>
-                </IconButton>
-                <p>{t("button.myCoins")}</p>
-            </MenuItem>
+            {
+                !!userContext.user ? (
+                    <>
+                        <MenuItem onClick={newCoin}>
+                            <IconButton aria-label="add new coin" color="inherit">
+                                <AddCircleOutlineIcon/>
+                            </IconButton>
+                            <p>{t("button.addCoin")}</p>
+                        </MenuItem>
+                        <MenuItem onClick={handleMyCoins}>
+                            <IconButton aria-label="show favorites" color="inherit">
+                                <FolderSpecialIcon/>
+                            </IconButton>
+                            <p>{t("button.myCoins")}</p>
+                        </MenuItem>
+                    </>
+                ) : ("")
+            }
             <MenuItem onClick={changeLang}>
                 <IconButton aria-label="show favorites" color="inherit">
                     {
@@ -146,16 +134,21 @@ export default function Header() {
                     }
                 </IconButton>
             </MenuItem>
-            <MenuItem onClick={handleProfileMenuOpen}>
-                <IconButton
-                    aria-label="account of current user"
-                    aria-controls="primary-search-account-menu"
-                    aria-haspopup="true"
-                    color="inherit"
-                >
-                    <AccountCircle/>
-                </IconButton>
-                <p>Profile</p>
+            <MenuItem>
+                {
+                    !!userContext.user ? (
+                        <IconButton onClick={() => handleLogout()} edge="end" aria-label="login" color="inherit">
+                            <ExitToAppIcon/>
+                            <span>{t("button.logout")}</span>
+                        </IconButton>
+                    ) : (
+
+                        <IconButton component={NavLink} to={"/login"} edge="end" aria-label="login" color="inherit">
+                            <AccountCircle/>
+                            {t("button.login")}
+                        </IconButton>
+                    )
+                }
             </MenuItem>
         </Menu>
     );
@@ -174,36 +167,37 @@ export default function Header() {
                     </MenuItem>
                     <div className={classes.grow}/>
                     <div className={classes.sectionDesktop}>
-                        <IconButton onClick={newCoin} aria-label="add coin" color="inherit">
-                            <AddCircleOutlineIcon/>
-                        </IconButton>
-                        <IconButton aria-label="remembered coins" color="inherit">
-                            <Badge badgeContent={2} color="secondary">
-                                <FavoriteIcon/>
-                            </Badge>
-                        </IconButton>
-                        <IconButton onClick={handleMyCoins} aria-label="show my coins" color="inherit">
-                            <FolderSpecialIcon/>
-                        </IconButton>
+                        {
+                            !!userContext.user ? (
+                                <>
+                                    <IconButton onClick={newCoin} aria-label="add coin" color="inherit">
+                                        <AddCircleOutlineIcon/>
+                                    </IconButton>
+                                    <IconButton onClick={handleMyCoins} aria-label="show my coins" color="inherit">
+                                        <FolderSpecialIcon/>
+                                    </IconButton>
+                                </>
+                            ) : ("")
+                        }
                         <IconButton onClick={changeLang} color="inherit">
-                            {
-                                i18n.language === "en-US" ? <span>🇱🇹</span> : <span>🇬🇧</span>
-                            }
+                            {i18n.language === "en-US" ? <span>🇱🇹</span> : <span>🇬🇧</span>}
                         </IconButton>
+                        {
+                            !!userContext.user ? (
+                                <IconButton onClick={() => handleLogout()} edge="end" aria-label="login"
+                                            color="inherit">
+                                    <ExitToAppIcon/>
+                                    <span>{t("button.logout")}</span>
+                                </IconButton>
+                            ) : (
 
-                        {/*{*/}
-                        {/*    !!user ? (*/}
-                        {/*        <IconButton edge="end" aria-label="login" color="inherit">*/}
-                        {/*            <AccountCircle/>*/}
-                        {/*            {t("button.login")}*/}
-                        {/*        </IconButton>*/}
-                        {/*    ) : (*/}
-                        {/*        <IconButton onClick={handleLogout} edge="end" aria-label="login" color="inherit">*/}
-                        {/*            <ExitToAppIcon/>*/}
-                        {/*            <span>{t("button.logout")}</span>*/}
-                        {/*        </IconButton>*/}
-                        {/*    )*/}
-                        {/*}*/}
+                                <IconButton component={NavLink} to={"/login"} edge="end" aria-label="login"
+                                            color="inherit">
+                                    <AccountCircle/>
+                                    {t("button.login")}
+                                </IconButton>
+                            )
+                        }
 
                     </div>
                     <div className={classes.sectionMobile}>

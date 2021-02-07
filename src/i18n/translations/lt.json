@@ -43,7 +43,7 @@
     "addCoin": "Pridėti monetą",
     "favorite": "Įsiminti",
     "myCoins": "Mano monetos",
-    "login": "Login",
-    "logout": "Logout"
+    "login": "Prisijungti",
+    "logout": "Atsijungti"
   }
 }
